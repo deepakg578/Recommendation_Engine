@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<body>
+    <div class="container">
+        <div class="col-md-12 text-center title"> 
+            <h1 class="vertical-align">Finding Location...Wait!!</h1>
+        </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script><body>
+        <p id="demo"></p>
+
+    <script>
+    getLocation();
+
+
+        var x = document.getElementById("demo");
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else { 
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+        function showPosition(position) {
+            window.history.pushState(null, "Location", "/food/"+position.coords.latitude+","+position.coords.longitude);
+            location.reload();
+        }
+    </script>
+
+
+

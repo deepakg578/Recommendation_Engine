@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+
+
+	<script src="https://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+
+	<script >
+		
+		var name_array=new Array();
+		var rating_array=new Array();
+		var lat_array=new Array();
+		var longi_array=new Array();	
+		var url_array=new Array();
+		ctr = 0;
+		
+
+	</script>
+
+	{% for value in cafe_list.restaurants %} 
+	{% if value.restaurant.user_rating.votes > 100 %} 
+	<script type="text/javascript">name_array.push('{{value.restaurant.name}}')</script>
+	<script type="text/javascript">rating_array.push('{{value.restaurant.user_rating.aggregate_rating}}')</script>
+	<script type="text/javascript">lat_array.push('{{value.restaurant.location.latitude}}')</script>
+	<script type="text/javascript">longi_array.push('{{value.restaurant.location.longitude}}')</script>
+	<script type="text/javascript">url_array.push('{{value.restaurant.url}}')</script>	
+	{% endif %}
+	{% endfor %}
+
+
+
+</head>
+<body>
+
+	<div class="container">
+
+		<div class="col-md-12 text-center">
+			<h1>VISIT</h1>
+			<a id="zomato_link" href="#"><h1 id="Rname" ></h1></a>
+			
+
+		</br>
+		
+		<button class="btn btn-xlarge btn-danger btn-md" onclick="showTitle()">NEXT</button>		
+		
+		
+	</br>
+</br>
+
+
+
+
+{% include 'find/map.html' %}			
+
+
+
+
+<a href="/dessert/{{lat}},{{longi}}" class="btn btn-xlarge btn-primary">I want Desserts</a>
+<a href="/wronglocation" class="btn btn-xlarge btn-danger" >Change Location</a>
+<a href="/food/{{lat}},{{longi}}" class="btn btn-xlarge btn-primary">I want food</a>	
+
+
+</div>
+
+
+
+
+
+</div>
+
+</body>
+			 
+</html>
